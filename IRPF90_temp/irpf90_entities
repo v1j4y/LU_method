@@ -1,0 +1,7 @@
+c.irp.f                   : real*8, allocatable       :: c                         (rank,rank)
+c.irp.f                   : real*8, allocatable       :: e                         (rank)
+LU.irp.f                  : real*8, allocatable       :: li                        (rank,rank)
+LU.irp.f                  : real*8, allocatable       :: ll                        (rank,rank)
+rank.irp.f                : integer                   :: rank                      
+LU.irp.f                  : real*8, allocatable       :: u                         (rank,rank)
+x.irp.f                   : real*8, allocatable       :: x                         (rank,rank)
