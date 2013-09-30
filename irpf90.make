@@ -1,5 +1,5 @@
-SRC += IRPF90_temp/irp_stack.irp.F90 IRPF90_temp/irp_touches.irp.F90 IRPF90_temp/c.irp.F90 IRPF90_temp/c.irp.module.F90 IRPF90_temp/LU.irp.F90 IRPF90_temp/LU.irp.module.F90 IRPF90_temp/rank.irp.F90 IRPF90_temp/rank.irp.module.F90 IRPF90_temp/x.irp.F90 IRPF90_temp/x.irp.module.F90 IRPF90_temp/h_mat.irp.F90 IRPF90_temp/h_mat.irp.module.F90
-OBJ += IRPF90_temp/irp_stack.irp.o IRPF90_temp/c.irp.o IRPF90_temp/c.irp.module.o IRPF90_temp/LU.irp.o IRPF90_temp/LU.irp.module.o IRPF90_temp/rank.irp.o IRPF90_temp/rank.irp.module.o IRPF90_temp/x.irp.o IRPF90_temp/x.irp.module.o
+SRC += IRPF90_temp/irp_stack.irp.F90 IRPF90_temp/irp_touches.irp.F90 IRPF90_temp/LU.irp.F90 IRPF90_temp/LU.irp.module.F90 IRPF90_temp/x.irp.F90 IRPF90_temp/x.irp.module.F90 IRPF90_temp/rank.irp.F90 IRPF90_temp/rank.irp.module.F90 IRPF90_temp/h_mat.irp.F90 IRPF90_temp/h_mat.irp.module.F90 IRPF90_temp/c.irp.F90 IRPF90_temp/c.irp.module.F90 IRPF90_temp/h.irp.F90 IRPF90_temp/h.irp.module.F90
+OBJ += IRPF90_temp/irp_stack.irp.o IRPF90_temp/LU.irp.o IRPF90_temp/LU.irp.module.o IRPF90_temp/x.irp.o IRPF90_temp/x.irp.module.o IRPF90_temp/rank.irp.o IRPF90_temp/rank.irp.module.o IRPF90_temp/c.irp.o IRPF90_temp/c.irp.module.o IRPF90_temp/h.irp.o IRPF90_temp/h.irp.module.o
 OBJ1 = $(patsubst %, IRPF90_temp/%,$(notdir $(OBJ))) IRPF90_temp/irp_touches.irp.o 
 ALL = h_mat
 ALL_OBJ = h_mat.irp.module.o h_mat.irp.o
@@ -9,12 +9,13 @@ all:$(ALL)
 h_mat: IRPF90_temp/h_mat.irp.o IRPF90_temp/h_mat.irp.module.o $(OBJ1)
 	$(FC) -o $@ IRPF90_temp/$@.irp.o IRPF90_temp/$@.irp.module.o $(OBJ1) $(LIB)
 	@$(MAKE) -s move
-IRPF90_temp/c.irp.o: IRPF90_temp/c.irp.module.o  IRPF90_temp/rank.irp.module.o 
 IRPF90_temp/LU.irp.o: IRPF90_temp/LU.irp.module.o  IRPF90_temp/rank.irp.module.o  IRPF90_temp/c.irp.module.o 
-IRPF90_temp/rank.irp.o: IRPF90_temp/rank.irp.module.o  
 IRPF90_temp/x.irp.o: IRPF90_temp/x.irp.module.o  IRPF90_temp/rank.irp.module.o  IRPF90_temp/LU.irp.module.o 
-IRPF90_temp/h_mat.irp.o: IRPF90_temp/h_mat.irp.module.o  IRPF90_temp/rank.irp.module.o  IRPF90_temp/x.irp.module.o  IRPF90_temp/LU.irp.module.o  IRPF90_temp/c.irp.module.o 
-IRPF90_temp/irp_touches.irp.o:  IRPF90_temp/c.irp.o IRPF90_temp/c.irp.o  IRPF90_temp/LU.irp.o IRPF90_temp/LU.irp.o  IRPF90_temp/rank.irp.o IRPF90_temp/rank.irp.o  IRPF90_temp/x.irp.o IRPF90_temp/x.irp.o
+IRPF90_temp/rank.irp.o: IRPF90_temp/rank.irp.module.o  
+IRPF90_temp/h_mat.irp.o: IRPF90_temp/h_mat.irp.module.o  IRPF90_temp/h.irp.module.o  IRPF90_temp/rank.irp.module.o  IRPF90_temp/x.irp.module.o  IRPF90_temp/LU.irp.module.o 
+IRPF90_temp/c.irp.o: IRPF90_temp/c.irp.module.o  IRPF90_temp/rank.irp.module.o 
+IRPF90_temp/h.irp.o: IRPF90_temp/h.irp.module.o  IRPF90_temp/x.irp.module.o  IRPF90_temp/rank.irp.module.o  IRPF90_temp/c.irp.module.o 
+IRPF90_temp/irp_touches.irp.o:  IRPF90_temp/LU.irp.o IRPF90_temp/LU.irp.o  IRPF90_temp/x.irp.o IRPF90_temp/x.irp.o  IRPF90_temp/rank.irp.o IRPF90_temp/rank.irp.o  IRPF90_temp/c.irp.o IRPF90_temp/c.irp.o  IRPF90_temp/h.irp.o IRPF90_temp/h.irp.o
 IRPF90_temp/%.irp.module.o: IRPF90_temp/%.irp.module.F90
 	$(FC) $(FCFLAGS) -c IRPF90_temp/$*.irp.module.F90 -o IRPF90_temp/$*.irp.module.o
 IRPF90_temp/%.irp.o: IRPF90_temp/%.irp.module.o IRPF90_temp/%.irp.F90

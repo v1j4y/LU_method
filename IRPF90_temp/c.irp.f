@@ -1,5 +1,7 @@
 BEGIN_PROVIDER [real*8, C,(rank,rank)]
+&BEGIN_PROVIDER [real*8, CC,(rank,rank)]
 &BEGIN_PROVIDER [real*8, e,(rank)]
+&BEGIN_PROVIDER [real*8, ei,(rank,rank)]
 
     implicit none
     ! BEGIN_DOC
@@ -38,10 +40,25 @@ BEGIN_PROVIDER [real*8, C,(rank,rank)]
             write(6,*)
     enddo
 
+    CC=C
+
     e(1) = 1
     e(2) = 2
     e(3) = 3
 !   e(4) = 4
+
+!   calculate EI
+
+    do i=1,rank
+        do j=1,rank
+            if(j.eq.i)then
+            EI(j,i)=E(i)
+            else
+            EI(j,i)=0d0
+            endif
+        enddo
+    enddo
+
 
    12   format((F5.2,'  '),$)
 END_PROVIDER

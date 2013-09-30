@@ -1,21 +1,6 @@
 program hamil
     implicit none
-    real*8,allocatable :: eI(:,:)
     integer :: i,j,k,l
-
-    allocate (eI(rank,rank))
-
-!   calculate EI
-
-    do i=1,rank
-        do j=1,rank
-            if(j.eq.i)then
-            EI(j,i)=E(i)
-            else
-            EI(j,i)=0d0
-            endif
-        enddo
-    enddo
 
 !   invert coefficient matrix
 !!  calculate the LU decomposition
@@ -52,7 +37,7 @@ program hamil
     write(6,*)'Hamiltonian H = C*E*C-1'
     do i=1,rank
         do j=1,rank
-            write(6,12)X(j,i)
+            write(6,12)H(j,i)
         enddo
             write(6,*)
     enddo

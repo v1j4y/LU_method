@@ -2,7 +2,9 @@
 .SH Declaration
 .nf
 real*8, allocatable	:: c	(rank,rank)
+real*8, allocatable	:: cc	(rank,rank)
 real*8, allocatable	:: e	(rank)
+real*8, allocatable	:: ei	(rank,rank)
 .ni
 .SH File
 .P
@@ -11,5 +13,7 @@ c.irp.f
 rank
 .br
 .SH Needed by
+h
+.br
 ll
 .br

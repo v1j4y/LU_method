@@ -1,4 +1,4 @@
-.TH "IRPF90 entities" l e "IRPF90 entities" e
+.TH "IRPF90 entities" l ei "IRPF90 entities" ei
 .SH Declaration
 .nf
 real*8, allocatable	:: c	(rank,rank)

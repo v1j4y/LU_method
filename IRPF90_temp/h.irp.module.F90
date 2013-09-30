@@ -6,10 +6,7 @@
 !           DO NOT MODIFY IT BY HAND            !
 !-----------------------------------------------!
 
-module c_mod
-  real*8, allocatable :: c (:,:)
-  logical :: c_is_built = .False.
-  real*8, allocatable :: e (:)
-  real*8, allocatable :: cc (:,:)
-  real*8, allocatable :: ei (:,:)
-end module c_mod
+module h_mod
+  real*8, allocatable :: h (:,:)
+  logical :: h_is_built = .False.
+end module h_mod

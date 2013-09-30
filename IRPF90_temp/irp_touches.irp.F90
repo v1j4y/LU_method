@@ -1,8 +1,9 @@
 subroutine irp_finalize_991214802
- use c_mod
  use LU_mod
- use rank_mod
  use x_mod
+ use rank_mod
+ use c_mod
+ use h_mod
   if (allocated(c)) then
     c_is_built = .False.
     deallocate(c)
@@ -10,6 +11,14 @@ subroutine irp_finalize_991214802
   if (allocated(e)) then
     c_is_built = .False.
     deallocate(e)
+  endif
+  if (allocated(cc)) then
+    c_is_built = .False.
+    deallocate(cc)
+  endif
+  if (allocated(h)) then
+    h_is_built = .False.
+    deallocate(h)
   endif
   if (allocated(ll)) then
     ll_is_built = .False.
@@ -26,5 +35,9 @@ subroutine irp_finalize_991214802
   if (allocated(x)) then
     x_is_built = .False.
     deallocate(x)
+  endif
+  if (allocated(ei)) then
+    c_is_built = .False.
+    deallocate(ei)
   endif
 end
